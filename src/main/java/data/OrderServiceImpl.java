@@ -27,6 +27,14 @@ public class OrderServiceImpl implements  OrderService {
         return orders;
     }
 
+    @Override
+    public double addOrder(String account, ArrayList<ProductItem> productList) {
+        int orderId = this.addSimpleInfoToOrder(account);
+        double total=this.addProductList(orderId,productList);
+        return total;
+    }
+
+
     public ArrayList<ProductItem>  getProductList(int orderId){
 
         ArrayList<ProductItem>  productList = new ArrayList<ProductItem>();
@@ -82,27 +90,62 @@ public class OrderServiceImpl implements  OrderService {
         return orderList;
     }
 
+    public int addSimpleInfoToOrder(String account){
+        int orderId = -1;
+        String sql="insert into `order`(account,orderTime)values(?,?)";
+        LocalDate today = LocalDate.now();
+        try {
+            Connection conn = new MySQLConnector().getConnectionByDataSource();
+            PreparedStatement psmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            psmt.setString(1,account);
+            psmt.setDate(2,java.sql.Date.valueOf(today));
+            psmt.executeUpdate();
+            ResultSet rs = psmt.getGeneratedKeys();
+            while(rs.next()){
+                orderId = rs.getInt(1);
+            }
+            psmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-//    public Product getProdutInfo(int productId){
-//
-//        Product p = null;
-//        Connection conn = new MySQLConnector().getConnection("webHomework01");
-//        String sql = "select * from product where productId=?";
-//
-//        try {
-//            PreparedStatement psmt = conn.prepareStatement(sql);
-//            psmt.setInt(1,productId);
-//            ResultSet rs = psmt.executeQuery();
-//            while(rs.next()){
-//                p = new Product(productId,rs.getString("productName"),rs.getDouble("price"),rs.getInt("repertory"));
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return p;
-//    }
+        return  orderId;
+    }
+
+
+    public double addProductList(int orderId,ArrayList<ProductItem> productList){
+            double total = 0;
+            for(ProductItem item:productList) {
+                total += item.getTotalPrice();
+                addSingleProductToList(orderId, item);
+            }
+            return total;
+    }
+
+
+    public boolean addSingleProductToList(int orderId,ProductItem item){
+
+        String sql ="insert into product_list(orderId,productId,quantity)values(?,?,?)";
+
+        try {
+            Connection conn = new MySQLConnector().getConnectionByDataSource();
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1,orderId);
+            psmt.setInt(2,item.getProductId());
+            psmt.setInt(3,item.getQuantity());
+            psmt.executeUpdate();
+            psmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+
+
+
 
 
 

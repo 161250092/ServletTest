@@ -43,6 +43,25 @@ public class LoginServiceImpl implements LoginService {
         return res;
     }
 
+    @Override
+    public boolean deductFare(String account, double fare) {
+        String sql = "update user set money=money-? where account=?";
+        try {
+            Connection conn = new MySQLConnector().getConnectionByDataSource();
+            PreparedStatement psmt = conn.prepareStatement(sql);
+
+            psmt.setDouble(1,fare);
+            psmt.setString(2,account);
+            psmt.executeUpdate();
+
+            psmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     public void accountUserNum(){
         Connection conn = new MySQLConnector().getConnection("webHomework01");
@@ -61,6 +80,9 @@ public class LoginServiceImpl implements LoginService {
             e.printStackTrace();
         }
     }
+
+
+
 
 
 

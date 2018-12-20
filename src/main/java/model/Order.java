@@ -8,7 +8,7 @@ public class Order {
     int orderId;
     String account;
     Date orderTime;
-    ArrayList<model.ProductItem>  list;
+    ArrayList<ProductItem>  list;
     double total;
 
     public Order(int orderId, String account,Date orderTime, ArrayList<model.ProductItem> list, double total) {
