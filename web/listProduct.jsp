@@ -28,12 +28,16 @@
         });
     </script>
 </head>
-<body>
+
 
 <h>${account}</h>
+<a style="text-decoration: none" href="ExitServlet">登出</a>
 <div align="center" style="height: 20px; margin: 20px">
     <span style="color:blue" id="addCartSuccessMessage">商品列表</span>
 </div>
+<p>online: ${online}</p>
+<p>visitor: ${visitor}</p>
+<p>all: ${all}</p>
 <p>${message}</p>
 
 <table align="center" border="1" cellspacing="0">
