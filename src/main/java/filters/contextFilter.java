@@ -1,11 +1,11 @@
-package filter;
+package filters;
 
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter("/Login")
+@WebFilter("/servlets.Login")
 public class contextFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

@@ -13,6 +13,6 @@
 <body>
 <p>游客数:</p>
 <p>${visitor}</p>
-<a style="text-decoration: none" href="login.jsp">登陆</a>
+<a style="text-decoration: none" href="${pageContext.request.contextPath}/user/login.jsp">登陆</a>
 </body>
 </html>

@@ -17,7 +17,7 @@
                 var number=$("input.number[pid="+pid+"]").val();
                 //使用get请求方法
                 //设置请求的域名
-                var page="/AddOrderItemServlet";
+                var page="/servlets.AddOrderItemServlet";
                 //请求
                 $.get(
                     page,
@@ -64,7 +64,7 @@
         </tr>
     </c:forEach>
     <tr>
-        <td colspan="4" align="center"><a href="${pageContext.request.contextPath}/listOrderItem.jsp">查看购物车</a> </td>
+        <td colspan="4" align="center"><a href="${pageContext.request.contextPath}/order/listOrderItem.jsp">查看购物车</a> </td>
     </tr>
 </table>
 </body>

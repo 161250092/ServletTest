@@ -1,9 +1,8 @@
-package listener;
+package listeners;
 
 import model.UserList;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebListener;
 
 
 public class CounterListener implements ServletContextListener,ServletContextAttributeListener {

@@ -33,8 +33,9 @@
     </c:forEach>
     <c:if test="${!empty orderItemList}">
         <tr>
+
             <td colspan="5" align="center">
-                <a style="text-decoration: none" href="createOrderServlet">生成订单</a>
+                <a style="text-decoration: none" href="${pageContext.request.contextPath}/createOrderServlet">生成订单</a>
             </td>
         </tr>
     </c:if>

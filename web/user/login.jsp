@@ -8,7 +8,7 @@
 <br>
 <br>
 <br>
-<form action="Login" method="post">
+<form action="${pageContext.request.contextPath}/Login" method="post">
     <table align="center">
         <tr>
             <td>用户名：</td>
@@ -30,7 +30,7 @@
         </tr>
     </table>
 
-    <a style="text-decoration: none" href="VisitorServlet">游客浏览</a>
+    <a style="text-decoration: none" href="${pageContext.request.contextPath}/VisitorServlet">游客浏览</a>
 </form>
 </body>
 </html>
