@@ -1,17 +1,31 @@
 package model;
 
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Order {
-    int orderId;
-    String account;
-    Date orderTime;
-    ArrayList<ProductItem>  list;
-    double total;
+@Entity
+@Table(name="order_tl")
+public class Order implements Serializable{
 
-    public Order(int orderId, String account,Date orderTime, ArrayList<model.ProductItem> list, double total) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int orderId;
+
+    private String account;
+
+    private Date orderTime;
+
+    @OneToMany(mappedBy="order",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OrderBy("productId ASC")
+    private List<ProductItem> list = new ArrayList<ProductItem>();
+
+    private double total;
+
+    public Order(int orderId, String account,Date orderTime, ArrayList<ProductItem> list, double total) {
         this.orderId = orderId;
         this.account = account;
         this.orderTime = orderTime;
@@ -19,6 +33,24 @@ public class Order {
         this.total = total;
     }
 
+    public Order() {
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public void setList(List<ProductItem> list) {
+        this.list = list;
+    }
 
     public int getOrderId() {
         return orderId;
@@ -32,7 +64,7 @@ public class Order {
         return orderTime;
     }
 
-    public ArrayList<ProductItem> getList() {
+    public List<ProductItem> getList() {
         return list;
     }
 
@@ -48,5 +80,11 @@ public class Order {
         list = null;
         total = 0;
     }
+
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
 
 }

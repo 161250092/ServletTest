@@ -3,16 +3,17 @@ package factory;
 import dao.LoginDao;
 import dao.OrderDao;
 import dao.ProductDao;
-import dao.impl.LoginDaoImpl;
-import dao.impl.OrderDaoImpl;
-import dao.impl.ProductDaoImpl;
+import dao.bean.LoginDaoBean;
+import dao.bean.OrderDaoBean;
+import dao.bean.ProductDaoBean;
+
 
 public class DaoFactory {
 
-    public static LoginDao getLoginDao(){return LoginDaoImpl.getInstance();}
+    public static LoginDao getLoginDao(){return LoginDaoBean.getInstance();}
 
-    public static OrderDao getOrderDao(){return OrderDaoImpl.getInstance();}
+    public static OrderDao getOrderDao(){return OrderDaoBean.getInstance();}
 
-    public static ProductDao getProductDao(){return ProductDaoImpl.getInstance();}
+    public static ProductDao getProductDao(){return ProductDaoBean.getInstance();}
 
 }
