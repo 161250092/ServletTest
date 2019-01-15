@@ -17,7 +17,7 @@
                 var number=$("input.number[pid="+pid+"]").val();
                 //使用get请求方法
                 //设置请求的域名
-                var page="/servlets.AddOrderItemServlet";
+                var page="/ProductController";
                 //请求
                 $.get(
                     page,

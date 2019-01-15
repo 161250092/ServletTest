@@ -1,5 +1,6 @@
 package dao.bean;
 
+import org.springframework.stereotype.Repository;
 import utils.HibernateUtil;
 import dao.ProductDao;
 import model.Product;
@@ -9,7 +10,7 @@ import org.hibernate.Transaction;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class ProductDaoBean implements ProductDao{
     private static ProductDaoBean productDaoBean = new ProductDaoBean();
     public static ProductDaoBean getInstance(){return productDaoBean;}

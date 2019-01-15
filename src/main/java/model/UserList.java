@@ -7,6 +7,7 @@ public class UserList {
     private static int visitor = 0;
 
     public static void addUser(String account){
+        if(!onlineUser.contains(account))
         onlineUser.add(account);
     }
 

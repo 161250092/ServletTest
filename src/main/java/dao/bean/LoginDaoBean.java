@@ -1,12 +1,11 @@
 package dao.bean;
 
-import utils.HibernateUtil;
 import dao.LoginDao;
 import model.User;
 import model.UserList;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class LoginDaoBean extends BaseDaoImpl implements LoginDao{
     private static LoginDaoBean loginDao = new LoginDaoBean();
 

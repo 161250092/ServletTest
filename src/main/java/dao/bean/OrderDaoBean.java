@@ -1,5 +1,6 @@
 package dao.bean;
 
+import org.springframework.stereotype.Repository;
 import utils.HibernateUtil;
 import dao.OrderDao;
 import model.Order;
@@ -11,6 +12,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+@Repository
 public class OrderDaoBean extends BaseDaoImpl implements OrderDao{
     private static OrderDaoBean orderDao = new OrderDaoBean();
 
